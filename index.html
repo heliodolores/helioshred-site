@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HelioShred Games</title>
+  <meta name="description" content="HelioShred Games makes small mobile games with care: FlipP4TH, a calm daily puzzle, and Cool Dive, a frosty penguin slalom.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <meta property="og:title" content="HelioShred Games">
+  <meta property="og:description" content="Small games, made with care.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://helioshred.com/">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #faf7f2;
+      color: #1b2440;
+      font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a { color: #e8731f; text-decoration: none; }
+    a:hover { color: #c95c10; }
+
+    .wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+
+    header { padding-top: 24px; padding-bottom: 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    header img { height: 52px; width: auto; display: block; mix-blend-mode: multiply; }
+    header a { font: 700 15px 'Nunito', sans-serif; color: #1b2440; }
+    header a:hover { color: #e8731f; }
+
+    .hero { padding-top: 24px; padding-bottom: 32px; }
+    h1 { margin: 0; font: 900 clamp(32px, 5vw, 56px)/1.05 'Nunito', sans-serif; letter-spacing: -.02em; max-width: 820px; text-wrap: balance; }
+    h1 span { color: #e8731f; }
+
+    .games {
+      padding-bottom: 56px; flex: 1;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); gap: 24px; align-content: start;
+    }
+    .game {
+      background: #fff; border-radius: 28px; overflow: hidden;
+      display: grid; grid-template-columns: minmax(0, 180px) minmax(0, 1fr);
+      box-shadow: 0 16px 40px rgba(36,31,24,.07);
+    }
+    .game .art { display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .game .art img { width: 100%; height: auto; display: block; }
+    .game .body { padding: 24px; display: flex; flex-direction: column; gap: 8px; }
+    .game .tag { font: 800 11px 'Nunito', sans-serif; letter-spacing: .14em; }
+    .game .name { font: 900 28px/1 'Nunito', sans-serif; letter-spacing: .01em; }
+    .game p { margin: 0; font: 400 15px/1.5 'Nunito', sans-serif; color: #6b7080; text-wrap: pretty; }
+    .game .foot { margin-top: auto; padding-top: 8px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .game .platforms { font: 600 13px 'Nunito', sans-serif; color: #8d8a84; }
+    .game .cta { padding: 10px 18px; border-radius: 999px; background: #1b2440; color: #fff; font: 700 15px 'Nunito', sans-serif; transition: background .15s; }
+    .game .cta:hover { color: #fff; background: var(--accent); }
+
+    .flipp4th { --accent: #D5714C; }
+    .flipp4th .art { background: #fff; border-right: 1px solid #f0ebe3; }
+    .cooldive { --accent: #0a86d6; }
+    .cooldive .art { background: #0a86d6; }
+    .game .tag { color: var(--accent); }
+
+    footer {
+      padding-top: 24px; padding-bottom: 32px; border-top: 1px solid #e9e3d8;
+      display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+      font: 500 13px 'Nunito', sans-serif; color: #a3a09a;
+    }
+    footer a { color: #a3a09a; }
+    footer a:hover { color: #1b2440; }
+
+    @media (max-width: 520px) {
+      .wrap { padding-left: 16px; padding-right: 16px; }
+      header img { height: 42px; }
+      .game { grid-template-columns: 1fr; }
+      .game .art { max-height: 220px; }
+      .flipp4th .art { border-right: none; border-bottom: 1px solid #f0ebe3; }
+      .game .art img { width: 220px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="wrap">
+    <img src="img/helioshred-logo.png" alt="HelioShred Games">
+    <a href="#games">Our games</a>
+  </header>
+
+  <section class="wrap hero">
+    <h1>Small games, <span>made with care.</span></h1>
+  </section>
+
+  <section id="games" class="wrap games">
+
+    <article class="game flipp4th">
+      <div class="art"><img src="img/flipp4th-icon.png" alt="FlipP4TH"></div>
+      <div class="body">
+        <div class="tag">PUZZLE · DAILY</div>
+        <div class="name">FlipP4TH</div>
+        <p>Draw one path. Flip every tile. A calm, clever puzzle game with a new daily challenge.</p>
+        <div class="foot">
+          <span class="platforms">iOS · Android · Web</span>
+          <a class="cta" href="https://flipp4th.app">flipp4th.app →</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="game cooldive">
+      <div class="art"><img src="img/cooldive-icon.jpg" alt="Cool Dive"></div>
+      <div class="body">
+        <div class="tag">ARCADE · SLALOM</div>
+        <div class="name">COOL DIVE</div>
+        <p>One penguin, one board, one icy slope. Drag or tilt to slip between the flags, hit the ramps and chase your best run.</p>
+        <div class="foot">
+          <span class="platforms">iOS · Android</span>
+          <a class="cta" href="https://cooldive.app">cooldive.app →</a>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <footer class="wrap">
+    <span>© 2026 HelioShred Games</span>
+    <span><a href="mailto:support@flipp4th.app">FlipP4TH support</a> · <a href="mailto:support@cooldive.app">Cool Dive support</a></span>
+  </footer>
+
+</body>
+</html>

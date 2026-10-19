@@ -3,162 +3,1037 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HelioShred Games</title>
-  <meta name="description" content="HelioShred Games makes small mobile games with care: FlipP4TH, a calm daily puzzle, and Cool Dive, a frosty penguin slalom.">
+  <title>HelioShred Games · Handcrafted Mobile Games</title>
+  <meta name="description" content="HelioShred Games crafts small, vibrant mobile games made for pure play: FlipP4TH (mindful daily puzzle), Cool Dive (frosty penguin slalom), and Oh Crap! Run! (chaotic endless runner).">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-  <meta property="og:title" content="HelioShred Games">
-  <meta property="og:description" content="My picks for you: Let's play!">
+  <!-- Open Graph -->
+  <meta property="og:title" content="HelioShred Games · Handcrafted Mobile Games">
+  <meta property="og:description" content="Small games with big heart. Made for pure play: FlipP4TH, Cool Dive, and Oh Crap! Run!">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://helioshred.com/">
+  <meta property="og:image" content="https://helioshred.com/apple-touch-icon.png">
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    * { box-sizing: border-box; }
-    body {
+    :root {
+      --cream: #faf6f0;
+      --cream-alt: #f3ede2;
+      --cream-card: #ffffff;
+      --ink: #141c2c;
+      --ink-secondary: #48546a;
+      --ink-muted: #6b778d;
+      --ink-faint: #9aa4b2;
+      --line: rgba(28, 36, 56, 0.08);
+      --line-strong: rgba(28, 36, 56, 0.14);
+
+      /* Helio Brand Colors */
+      --brand-orange: #f25c05;
+      --brand-flame: #ff7824;
+      --brand-amber: #fbb034;
+      --brand-navy: #182236;
+
+      /* Game Accent Themes */
+      --flipp4th-color: #d5714c;
+      --flipp4th-glow: rgba(213, 113, 76, 0.26);
+      --flipp4th-bg: linear-gradient(135deg, #fdf4eb 0%, #fae5d3 100%);
+
+      --cooldive-color: #0284c7;
+      --cooldive-glow: rgba(2, 132, 199, 0.28);
+      --cooldive-bg: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+
+      --ohcrap-color: #d9472b;
+      --ohcrap-glow: rgba(217, 71, 43, 0.28);
+      --ohcrap-bg: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+
+      --shadow-sm: 0 2px 8px rgba(20, 28, 44, 0.04);
+      --shadow-md: 0 12px 32px -4px rgba(20, 28, 44, 0.07), 0 2px 6px rgba(20, 28, 44, 0.03);
+      --shadow-hover: 0 26px 56px -10px rgba(20, 28, 44, 0.15), 0 6px 16px rgba(20, 28, 44, 0.06);
+
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 26px;
+      --radius-xl: 32px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
       margin: 0;
-      background: #faf7f2;
-      color: #1b2440;
-      font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      -webkit-font-smoothing: antialiased;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      align-items: center;
+      width: 100%;
+      background-color: var(--cream);
+      background-image:
+        radial-gradient(900px 450px at 15% -5%, rgba(242, 92, 5, 0.12), transparent 60%),
+        radial-gradient(750px 400px at 85% 5%, rgba(251, 176, 52, 0.10), transparent 55%);
+      color: var(--ink);
+      font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+      overflow-x: hidden;
     }
-    a { color: #e8731f; text-decoration: none; }
-    a:hover { color: #c95c10; }
 
-    .wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
-
-    header { padding-top: 32px; padding-bottom: 32px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    header img { height: 52px; width: auto; display: block; mix-blend-mode: multiply; }
-    header nav { display: flex; gap: 24px; }
-    header a { font: 700 15px 'Nunito', sans-serif; color: #1b2440; }
-    header a:hover { color: #e8731f; }
-
-    .hero { padding-top: 48px; padding-bottom: 56px; }
-    h1 { margin: 0; font: 900 clamp(32px, 5vw, 56px)/1.05 'Nunito', sans-serif; letter-spacing: -.02em; max-width: 820px; text-wrap: balance; }
-    h1 .accent { color: #e8731f; }
-    h1 span { white-space: nowrap; }
-
-    .games {
-      padding-bottom: 96px; flex: 1;
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); gap: 32px; align-content: start;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
-    .game {
-      background: #fff; border-radius: 28px; overflow: hidden;
-      display: grid; grid-template-columns: minmax(0, 180px) minmax(0, 1fr);
-      box-shadow: 0 16px 40px rgba(36,31,24,.07);
+
+    :focus-visible {
+      outline: 3px solid var(--brand-orange);
+      outline-offset: 3px;
+      border-radius: 8px;
     }
-    .game .art { display: flex; align-items: center; justify-content: center; overflow: hidden; }
-    .game .art img { width: 100%; height: auto; display: block; }
-    .game .body { padding: 24px; display: flex; flex-direction: column; gap: 8px; }
-    .game .tag { font: 800 11px 'Nunito', sans-serif; letter-spacing: .14em; }
-    .game .name { font: 900 28px/1 'Nunito', sans-serif; letter-spacing: .01em; }
-    .game p { margin: 0; font: 400 15px/1.5 'Nunito', sans-serif; color: #6b7080; text-wrap: pretty; }
-    .game p.credit { font: 600 12px/1.4 'Nunito', sans-serif; color: #a3a09a; }
-    .game .foot { margin-top: auto; padding-top: 8px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-    .game .platforms { font: 600 13px 'Nunito', sans-serif; color: #8d8a84; }
-    .game .cta { padding: 10px 18px; border-radius: 999px; background: #1b2440; color: #fff; font: 700 15px 'Nunito', sans-serif; transition: background .15s; }
-    .game .cta:hover { color: #fff; background: var(--accent); }
 
-    .flipp4th { --accent: #D5714C; }
-    .flipp4th .art { background: #fff; border-right: 1px solid #f0ebe3; }
-    .cooldive { --accent: #0a86d6; }
-    .cooldive .art { background: #0a86d6; }
-    .ohcrap { --accent: #d9472b; }
-    .ohcrap .art { background: #3a2416; }
-    .ohcrap .art { padding: 0; } .ohcrap .art img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
-    .game .tag { color: var(--accent); }
+    .wrap {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
 
+    /* ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== */
+    header {
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(250, 246, 240, 0.90);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    main {
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 68px;
+      padding: 8px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .brand:hover {
+      transform: scale(1.02);
+    }
+    .brand img {
+      height: 42px;
+      width: auto;
+      display: block;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-link {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--ink-secondary);
+      padding: 7px 14px;
+      border-radius: 999px;
+      transition: color 0.18s ease, background 0.18s ease;
+    }
+    .nav-link:hover {
+      color: var(--brand-orange);
+      background: rgba(242, 92, 5, 0.06);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 800;
+      color: #fff;
+      background: var(--ink);
+      padding: 8px 16px;
+      border-radius: 999px;
+      box-shadow: 0 4px 12px rgba(20, 28, 44, 0.12);
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .nav-cta:hover {
+      background: var(--brand-orange);
+      box-shadow: 0 6px 18px rgba(242, 92, 5, 0.3);
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       HERO SECTION (COMPACT & PUNCHY)
+       ========================================================================== */
+    .hero {
+      padding: 34px 0 24px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 4px 14px;
+      border-radius: 999px;
+      background: rgba(242, 92, 5, 0.08);
+      border: 1px solid rgba(242, 92, 5, 0.18);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--brand-orange);
+      margin-bottom: 12px;
+    }
+    .hero-eyebrow .spark {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--brand-orange);
+      box-shadow: 0 0 8px var(--brand-orange);
+    }
+
+    h1.hero-title {
+      font-size: clamp(34px, 4.8vw, 56px);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin: 0 auto;
+      max-width: 20ch;
+      text-wrap: balance;
+    }
+
+    .hero-gradient {
+      background: linear-gradient(135deg, var(--brand-orange) 15%, #e03e00 50%, var(--brand-amber) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .hero-lede {
+      margin: 10px auto 0;
+      max-width: 48ch;
+      font-size: clamp(16px, 1.8vw, 18.5px);
+      font-weight: 600;
+      line-height: 1.45;
+      color: var(--ink-secondary);
+      text-wrap: pretty;
+    }
+
+    /* ==========================================================================
+       GAMES SHOWCASE SECTION
+       ========================================================================== */
+    .games-section {
+      padding: 16px 0 64px;
+    }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    /* Individual Game Card */
+    .game-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--cream-card);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-md);
+      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  box-shadow 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  border-color 0.2s ease;
+      position: relative;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .game-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover), 0 0 0 1px var(--card-border-active, rgba(242, 92, 5, 0.2));
+    }
+
+    /* Card Art Stage */
+    .card-stage {
+      position: relative;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--card-bg, #eee);
+    }
+
+    /* Ambient bloom behind the icon */
+    .card-stage-bloom {
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: var(--card-glow, rgba(0, 0, 0, 0.1));
+      filter: blur(34px);
+      opacity: 0.8;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      pointer-events: none;
+    }
+    .game-card:hover .card-stage-bloom {
+      transform: scale(1.3);
+      opacity: 1;
+    }
+
+    /* Floating Squircle Icon */
+    .icon-wrapper {
+      position: relative;
+      z-index: 2;
+      width: 132px;
+      height: 132px;
+      border-radius: 28px;
+      overflow: hidden;
+      background: #ffffff;
+      box-shadow: 0 12px 26px -4px var(--card-glow, rgba(0,0,0,0.2)),
+                  0 4px 10px rgba(0, 0, 0, 0.08),
+                  inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  box-shadow 0.35s ease;
+    }
+    .game-card:hover .icon-wrapper {
+      transform: scale(1.06) translateY(-4px);
+      box-shadow: 0 18px 34px -4px var(--card-glow, rgba(0,0,0,0.3)),
+                  0 6px 14px rgba(0, 0, 0, 0.12),
+                  inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+    }
+
+    .icon-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Art Badges */
+    .art-badge-top {
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      z-index: 3;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--card-accent, var(--ink));
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .art-badge-status {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: rgba(20, 28, 44, 0.78);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      font-size: 11px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 6px #4ade80;
+    }
+
+    /* Card Body */
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      padding: 22px 24px 24px;
+      gap: 12px;
+    }
+
+    .card-header-row {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .card-category {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--card-accent, var(--brand-orange));
+    }
+
+    .card-title {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+
+    .card-desc {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.5;
+      color: var(--ink-secondary);
+      text-wrap: pretty;
+      margin: 0;
+    }
+
+    /* Gameplay feature chips */
+    .feature-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 2px;
+    }
+    .feature-pill {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--cream);
+      color: var(--ink-secondary);
+      border: 1px solid var(--line);
+    }
+
+    /* Card Credits */
+    .card-credit {
+      font-size: 11.5px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--ink-faint);
+      margin-top: auto;
+      padding-top: 6px;
+    }
+
+    /* Card Footer & Action Button */
+    .card-foot {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .platform-badges {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink-muted);
+    }
+    .platform-badges svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+      opacity: 0.75;
+    }
+
+    .card-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 15px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #ffffff;
+      font-size: 13.5px;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-cta-btn .arrow {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+    .game-card:hover .card-cta-btn {
+      background: var(--card-accent, var(--brand-orange));
+      transform: translateX(2px);
+      box-shadow: 0 4px 14px var(--card-glow, rgba(0,0,0,0.2));
+    }
+    .game-card:hover .card-cta-btn .arrow {
+      transform: translateX(3px);
+    }
+
+    /* Custom Theme Rules for each Game */
+    .card-flipp4th {
+      --card-accent: var(--flipp4th-color);
+      --card-glow: var(--flipp4th-glow);
+      --card-bg: var(--flipp4th-bg);
+      --card-border-active: rgba(213, 113, 76, 0.4);
+    }
+
+    .card-cooldive {
+      --card-accent: var(--cooldive-color);
+      --card-glow: var(--cooldive-glow);
+      --card-bg: var(--cooldive-bg);
+      --card-border-active: rgba(2, 132, 199, 0.4);
+    }
+
+    .card-ohcrap {
+      --card-accent: var(--ohcrap-color);
+      --card-glow: var(--ohcrap-glow);
+      --card-bg: var(--ohcrap-bg);
+      --card-border-active: rgba(217, 71, 43, 0.4);
+    }
+
+    /* ==========================================================================
+       STUDIO PHILOSOPHY SECTION (COMPACT)
+       ========================================================================== */
+    .philosophy-section {
+      padding: 44px 0 54px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-head {
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .section-kicker {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brand-orange);
+      margin-bottom: 4px;
+    }
+    .section-title {
+      font-size: clamp(24px, 3.2vw, 32px);
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .pillar-card {
+      background: var(--cream-card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 24px 22px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .pillar-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .pillar-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: rgba(242, 92, 5, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 14px;
+    }
+
+    .pillar-title {
+      font-size: 17.5px;
+      font-weight: 800;
+      letter-spacing: -0.015em;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+
+    .pillar-text {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.5;
+      color: var(--ink-secondary);
+      text-wrap: pretty;
+    }
+
+    /* ==========================================================================
+       CONTACT & SUPPORT CALLOUT
+       ========================================================================== */
+    .contact-section {
+      padding: 0 0 64px;
+    }
+
+    .contact-card {
+      background: var(--cream-alt);
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius-xl);
+      padding: 36px 32px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .contact-card h2 {
+      font-size: clamp(22px, 2.8vw, 28px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .contact-card p {
+      max-width: 44ch;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      line-height: 1.5;
+    }
+
+    .btn-mail {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 22px;
+      border-radius: 999px;
+      background: var(--brand-orange);
+      color: #ffffff;
+      font-size: 14.5px;
+      font-weight: 800;
+      box-shadow: 0 6px 18px rgba(242, 92, 5, 0.28);
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .btn-mail:hover {
+      background: #e04e00;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(242, 92, 5, 0.35);
+    }
+
+    /* ==========================================================================
+       FOOTER (STUDIO CENTRIC)
+       ========================================================================== */
     footer {
-      padding-top: 28px; padding-bottom: 40px; border-top: 1px solid #e9e3d8;
-      display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
-      font: 500 13px 'Nunito', sans-serif; color: #a3a09a;
+      width: 100%;
+      border-top: 1px solid var(--line);
+      background: var(--cream);
+      padding: 40px 0 32px;
+      font-size: 14px;
+      color: var(--ink-muted);
     }
-    footer a { color: #a3a09a; }
-    footer a:hover { color: #1b2440; }
 
-    @media (max-width: 520px) {
-      .wrap { padding-left: 16px; padding-right: 16px; }
-      header img { height: 42px; }
-      header nav { gap: 16px; }
-      .game { grid-template-columns: 1fr; }
-      .game .art { max-height: 240px; }
-      .hero { padding-top: 24px; padding-bottom: 36px; }
-      .games { gap: 24px; padding-bottom: 64px; }
-      .flipp4th .art { border-right: none; border-bottom: 1px solid #f0ebe3; }
-      .game .art img { width: 220px; }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 36px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-brand img {
+      height: 36px;
+      width: auto;
+      display: block;
+      align-self: flex-start;
+    }
+    .footer-brand p {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.5;
+      color: var(--ink-secondary);
+      max-width: 30ch;
+    }
+
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .footer-col-title {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+    .footer-col a {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      transition: color 0.15s ease;
+    }
+    .footer-col a:hover {
+      color: var(--brand-orange);
+    }
+
+    .footer-bottom {
+      padding-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-faint);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .games-grid {
+        grid-template-columns: 1fr;
+        max-width: 640px;
+        margin: 0 auto;
+      }
+      .game-card {
+        display: grid;
+        grid-template-columns: 220px minmax(0, 1fr);
+      }
+      .card-stage {
+        height: 100%;
+        min-height: 220px;
+      }
+      .card-stage-bloom {
+        width: 120px;
+        height: 120px;
+      }
+      .icon-wrapper {
+        width: 124px;
+        height: 124px;
+      }
+      .pillars-grid {
+        grid-template-columns: 1fr;
+        max-width: 640px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .wrap {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+      .nav-bar {
+        min-height: 60px;
+      }
+      .brand img {
+        height: 36px;
+      }
+      nav .nav-link {
+        display: none;
+      }
+      .hero {
+        padding: 24px 0 18px;
+      }
+      .game-card {
+        grid-template-columns: 1fr;
+      }
+      .card-stage {
+        height: 190px;
+      }
+      .icon-wrapper {
+        width: 116px;
+        height: 116px;
+        border-radius: 24px;
+      }
+      .card-body {
+        padding: 18px 18px 20px;
+      }
+      .contact-card {
+        padding: 28px 18px;
+      }
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header class="wrap">
-    <img src="img/helioshred-logo.png" alt="HelioShred Games">
-    <nav>
-      <a href="https://flipp4th.app">FlipP4TH</a>
-      <a href="https://cooldive.app">Cool Dive</a>
-      <a href="/ohcrap/">Oh Crap! Run!</a>
-    </nav>
+  <!-- Top Navigation -->
+  <header>
+    <div class="wrap nav-bar">
+      <a class="brand" href="/" aria-label="HelioShred Games Home">
+        <img src="img/helioshred-logo.png" alt="HelioShred Games" width="180" height="61">
+      </a>
+      <nav>
+        <a class="nav-link" href="#games">Games</a>
+        <a class="nav-link" href="#about">Studio</a>
+        <a class="nav-link" href="#contact">Support</a>
+        <a class="nav-cta" href="#games">Play Now ↓</a>
+      </nav>
+    </div>
   </header>
 
-  <section class="wrap hero">
-    <h1><span class="keep">My picks for you:</span> <span class="accent">Let&rsquo;s play!</span></h1>
-  </section>
+  <main>
+    <!-- Compact Hero Section (Immediate focus on games) -->
+    <section class="wrap hero">
+      <div class="hero-eyebrow">
+        <span class="spark"></span> Independent Mobile Studio
+      </div>
+      <h1 class="hero-title">
+        My picks for you: <span class="hero-gradient">Let&rsquo;s play!</span>
+      </h1>
+      <p class="hero-lede">
+        Small games, made with care. Pick one and jump right in.
+      </p>
+    </section>
 
-  <section id="games" class="wrap games">
+    <!-- Games Showcase Section (Placed High Up) -->
+    <section id="games" class="wrap games-section">
+      <div class="games-grid">
 
-    <article class="game flipp4th">
-      <div class="art"><img src="img/flipp4th-icon.png" alt="FlipP4TH"></div>
-      <div class="body">
-        <div class="tag">PUZZLE · DAILY</div>
-        <div class="name">FlipP4TH</div>
-        <p>Draw one path. Flip every tile. A calm, clever puzzle game with a new daily challenge.</p>
-        <div class="foot">
-          <span class="platforms">iOS · Android · Web</span>
-          <a class="cta" href="https://flipp4th.app">flipp4th.app →</a>
+        <!-- Game 1: FlipP4TH -->
+        <a class="game-card card-flipp4th" href="https://flipp4th.app" target="_blank" rel="noopener">
+          <div class="card-stage">
+            <div class="card-stage-bloom"></div>
+            <span class="art-badge-top">Daily Logic</span>
+            <span class="art-badge-status"><span class="status-dot"></span> Coming Soon</span>
+            <div class="icon-wrapper">
+              <img class="icon-img" src="img/flipp4th-icon.png" alt="FlipP4TH icon">
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-header-row">
+              <div class="card-category">PUZZLE · DAILY</div>
+              <h3 class="card-title">FlipP4TH</h3>
+            </div>
+            <p class="card-desc">
+              Draw one path. Flip every tile. A calm, clever puzzle game with a new daily challenge.
+            </p>
+            <div class="feature-pills">
+              <span class="feature-pill">✦ 1 Daily Path</span>
+              <span class="feature-pill">✦ Tile Flipping</span>
+              <span class="feature-pill">✦ Calm &amp; Mindful</span>
+            </div>
+            <div class="card-foot">
+              <span class="platform-badges">
+                <svg viewBox="0 0 170 170"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.64-13.98-5.77-8.8-10.45-19.14-14.04-30.99-3.59-11.85-5.39-23.07-5.39-33.66 0-14.16 3.69-26.04 11.08-35.63 7.39-9.59 16.59-14.47 27.6-14.64 5.22 0 11.08 1.41 17.58 4.24 6.5 2.82 10.51 4.29 12.02 4.41 1.74-.24 6.02-1.8 12.86-4.69 6.84-2.88 12.74-4.22 17.7-4.02 13.25.64 23.63 5.48 31.14 14.52-11.3 6.84-16.85 16.29-16.63 28.35.22 9.55 3.86 17.65 10.92 24.3 7.07 6.66 15.42 10.51 25.07 11.55-2.07 6.3-4.57 12.87-7.51 19.71zm-32.9-106.84c-.22 2.61-1.08 5.43-2.58 8.47-1.5 3.04-3.59 5.86-6.27 8.46-3.04 2.82-6.3 5.09-9.78 6.81-3.48 1.73-6.9 2.76-10.27 3.09-.43-2.61.16-5.43 1.79-8.47 1.63-3.04 3.79-5.83 6.48-8.36 2.93-2.83 6.27-5.14 10.01-6.93 3.74-1.78 7.3-2.81 10.62-3.07z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9993.4482.9993.9993.0001.5511-.4483.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.4123 13.8533 8.125 12 8.125c-1.8534 0-3.5902.2873-5.1368.8247L4.8409 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.152.5676l1.9972 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396"/></svg>
+                iOS · Android
+              </span>
+              <span class="card-cta-btn">flipp4th.app <span class="arrow">&rarr;</span></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Game 2: Cool Dive -->
+        <a class="game-card card-cooldive" href="https://cooldive.app" target="_blank" rel="noopener">
+          <div class="card-stage">
+            <div class="card-stage-bloom"></div>
+            <span class="art-badge-top">Alpine Slalom</span>
+            <span class="art-badge-status"><span class="status-dot"></span> Coming Soon</span>
+            <div class="icon-wrapper">
+              <img class="icon-img" src="img/cooldive-icon.jpg" alt="Cool Dive icon">
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-header-row">
+              <div class="card-category">ARCADE · SLALOM</div>
+              <h3 class="card-title">Cool Dive</h3>
+            </div>
+            <p class="card-desc">
+              Help Pino the penguin race down an icy slope. Weave between the flags, drift the turns and fly off the ramps. Miss a gate and it's over!
+            </p>
+            <div class="feature-pills">
+              <span class="feature-pill">✦ Precision Slalom</span>
+              <span class="feature-pill">✦ Big Air Ramps</span>
+              <span class="feature-pill">✦ Drift Physics</span>
+            </div>
+            <p class="card-credit">Artwork &copy; Hugo Dolores, all rights reserved &middot; Music made with Suno</p>
+            <div class="card-foot">
+              <span class="platform-badges">
+                <svg viewBox="0 0 170 170"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.64-13.98-5.77-8.8-10.45-19.14-14.04-30.99-3.59-11.85-5.39-23.07-5.39-33.66 0-14.16 3.69-26.04 11.08-35.63 7.39-9.59 16.59-14.47 27.6-14.64 5.22 0 11.08 1.41 17.58 4.24 6.5 2.82 10.51 4.29 12.02 4.41 1.74-.24 6.02-1.8 12.86-4.69 6.84-2.88 12.74-4.22 17.7-4.02 13.25.64 23.63 5.48 31.14 14.52-11.3 6.84-16.85 16.29-16.63 28.35.22 9.55 3.86 17.65 10.92 24.3 7.07 6.66 15.42 10.51 25.07 11.55-2.07 6.3-4.57 12.87-7.51 19.71zm-32.9-106.84c-.22 2.61-1.08 5.43-2.58 8.47-1.5 3.04-3.59 5.86-6.27 8.46-3.04 2.82-6.3 5.09-9.78 6.81-3.48 1.73-6.9 2.76-10.27 3.09-.43-2.61.16-5.43 1.79-8.47 1.63-3.04 3.79-5.83 6.48-8.36 2.93-2.83 6.27-5.14 10.01-6.93 3.74-1.78 7.3-2.81 10.62-3.07z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9993.4482.9993.9993.0001.5511-.4483.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.4123 13.8533 8.125 12 8.125c-1.8534 0-3.5902.2873-5.1368.8247L4.8409 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.152.5676l1.9972 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396"/></svg>
+                iOS · Android
+              </span>
+              <span class="card-cta-btn">cooldive.app <span class="arrow">&rarr;</span></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Game 3: Oh Crap! Run! -->
+        <a class="game-card card-ohcrap" href="/ohcrap/">
+          <div class="card-stage">
+            <div class="card-stage-bloom"></div>
+            <span class="art-badge-top">Endless Runner</span>
+            <span class="art-badge-status"><span class="status-dot"></span> Coming Soon</span>
+            <div class="icon-wrapper">
+              <img class="icon-img" src="img/ohcrap-icon.png" alt="Oh Crap! Run! icon">
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-header-row">
+              <div class="card-category">ARCADE · ENDLESS RUNNER</div>
+              <h3 class="card-title">Oh Crap! Run!</h3>
+            </div>
+            <p class="card-desc">
+              A dung beetle races through 18 wild worlds, from ancient temples to the Moon, with its own giant dung ball rolling right behind. Every pellet you miss makes it bigger!
+            </p>
+            <div class="feature-pills">
+              <span class="feature-pill">✦ 18 Wild Worlds</span>
+              <span class="feature-pill">✦ Rolling Boulder</span>
+              <span class="feature-pill">✦ Fart Dash Smash</span>
+            </div>
+            <p class="card-credit">Music and voices made with Suno</p>
+            <div class="card-foot">
+              <span class="platform-badges">
+                <svg viewBox="0 0 170 170"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.64-13.98-5.77-8.8-10.45-19.14-14.04-30.99-3.59-11.85-5.39-23.07-5.39-33.66 0-14.16 3.69-26.04 11.08-35.63 7.39-9.59 16.59-14.47 27.6-14.64 5.22 0 11.08 1.41 17.58 4.24 6.5 2.82 10.51 4.29 12.02 4.41 1.74-.24 6.02-1.8 12.86-4.69 6.84-2.88 12.74-4.22 17.7-4.02 13.25.64 23.63 5.48 31.14 14.52-11.3 6.84-16.85 16.29-16.63 28.35.22 9.55 3.86 17.65 10.92 24.3 7.07 6.66 15.42 10.51 25.07 11.55-2.07 6.3-4.57 12.87-7.51 19.71zm-32.9-106.84c-.22 2.61-1.08 5.43-2.58 8.47-1.5 3.04-3.59 5.86-6.27 8.46-3.04 2.82-6.3 5.09-9.78 6.81-3.48 1.73-6.9 2.76-10.27 3.09-.43-2.61.16-5.43 1.79-8.47 1.63-3.04 3.79-5.83 6.48-8.36 2.93-2.83 6.27-5.14 10.01-6.93 3.74-1.78 7.3-2.81 10.62-3.07z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9993.4482.9993.9993.0001.5511-.4483.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.4123 13.8533 8.125 12 8.125c-1.8534 0-3.5902.2873-5.1368.8247L4.8409 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.152.5676l1.9972 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396"/></svg>
+                iOS · Android
+              </span>
+              <span class="card-cta-btn">More &rarr;</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Studio Philosophy Section (Clean & Focused) -->
+    <section id="about" class="wrap philosophy-section">
+      <div class="section-head">
+        <p class="section-kicker">Studio</p>
+        <h2 class="section-title">Small games, made with care</h2>
+      </div>
+
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon">⚡</div>
+          <h3 class="pillar-title">Zero Bloat, Pure Play</h3>
+          <p class="pillar-text">
+            No mandatory 20-minute tutorials, no tedious menus. Pick up your phone and jump right into the game.
+          </p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon">🎯</div>
+          <h3 class="pillar-title">Hand-Tuned Feel</h3>
+          <p class="pillar-text">
+            From the drifting arc of a penguin carving down fresh snow to the snap of a daily puzzle tile, every touch feels tactile and satisfying.
+          </p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon">📱</div>
+          <h3 class="pillar-title">Built for Mobile</h3>
+          <p class="pillar-text">
+            Designed natively for one-handed mobile play — whether you have 2 minutes at a stop or 20 minutes relaxing on the couch.
+          </p>
         </div>
       </div>
-    </article>
+    </section>
 
-    <article class="game cooldive">
-      <div class="art"><img src="img/cooldive-icon.jpg" alt="Cool Dive"></div>
-      <div class="body">
-        <div class="tag">ARCADE · SLALOM</div>
-        <div class="name">Cool Dive</div>
-        <p>Help Pino the penguin race down an icy slope. Weave between the flags, drift the turns and fly off the ramps. Miss a gate and it's over!</p>
-        <p class="credit">Cool Dive artwork © Hugo Dolores, all rights reserved · Music made with Suno</p>
-        <div class="foot">
-          <span class="platforms">iOS · Android</span>
-          <a class="cta" href="https://cooldive.app">cooldive.app →</a>
+    <!-- Contact & Support Section -->
+    <section id="contact" class="wrap contact-section">
+      <div class="contact-card">
+        <h2>Questions or feedback?</h2>
+        <p>
+          We're constantly tuning our games. Whether you want to share an idea, report an issue, or just say hello — we'd love to hear from you.
+        </p>
+        <a class="btn-mail" href="mailto:support@helioshred.com">
+          ✉️ Email support@helioshred.com
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Clean Studio-Centric Footer -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="/">
+            <img src="img/helioshred-logo.png" alt="HelioShred Games">
+          </a>
+          <p>Small mobile games made with care for iOS &amp; Android.</p>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">Games</div>
+          <a href="https://flipp4th.app">FlipP4TH</a>
+          <a href="https://cooldive.app">Cool Dive</a>
+          <a href="/ohcrap/">Oh Crap! Run!</a>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">Support</div>
+          <a href="mailto:support@helioshred.com?subject=FlipP4TH%20Support">FlipP4TH Support</a>
+          <a href="mailto:support@helioshred.com?subject=Cool%20Dive%20Support">Cool Dive Support</a>
+          <a href="/ohcrap/support">Oh Crap! Run! Support</a>
+          <a href="mailto:support@helioshred.com">General Inquiries</a>
         </div>
       </div>
-    </article>
 
-    <article class="game ohcrap">
-      <div class="art"><img src="img/ohcrap-icon.png" alt="Oh Crap! Run!"></div>
-      <div class="body">
-        <div class="tag">ARCADE · ENDLESS RUNNER</div>
-        <div class="name">Oh Crap! Run!</div>
-        <p>A dung beetle races through 18 wild worlds, from ancient temples to the Moon, with its own giant dung ball rolling right behind. Every pellet you miss makes it bigger!</p>
-        <p class="credit">Music and voices made with Suno</p>
-        <div class="foot">
-          <span class="platforms">Coming soon · iOS · Android</span>
-          <a class="cta" href="/ohcrap/">More →</a>
-        </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 HelioShred Games &middot; All rights reserved.</span>
+        <span>support@helioshred.com</span>
       </div>
-    </article>
-
-  </section>
-
-  <footer class="wrap">
-    <span>© 2026 HelioShred Games</span>
-    <span><a href="mailto:support@flipp4th.app">FlipP4TH support</a> · <a href="mailto:support@cooldive.app">Cool Dive support</a> · <a href="mailto:support@helioshred.com">Oh Crap! Run! support</a></span>
+    </div>
   </footer>
 
 </body>
